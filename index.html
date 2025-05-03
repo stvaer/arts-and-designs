@@ -882,8 +882,8 @@
   padding: 0 20px;
   text-align: center;
 }
-.section-1 .icon-container { order: 1; }
-.section-1 .text-container { order: 2; }
+ .section-1 .text-container { order: 1; }
+ .section-1 .icon-container { order: 2; }
     </style>
 </head>
 <body>
@@ -913,7 +913,7 @@
                         <a href="https://stvaer.github.io/IntelHome" class="nav-item text-white hover:text-gray-300" id="home-link">Home</a>
                         <a href="https://stvaer.github.io/IntelTrademark" class="nav-item text-white hover:text-gray-300" id="trademark-link">Trademark</a>
                         <a href="https://stvaer.github.io/IntelSol-and-terms" class="nav-item text-white hover:text-gray-300" id="sol-terms-link">Sol&amp;Terms</a>
-                        <a href="https://stvaer.github.io/IntelArts-Designs" class="nav-item text-white hover:text-gray-300 active-link" id="arts-designs-link">A'&amp;Designs</a>
+                        <a href="https://stvaer.github.io/arts-and-designs" class="nav-item text-white hover:text-gray-300 active-link" id="arts-designs-link">A'&amp;Designs</a>
                         <a href="https://stvaer.github.io/IntelArtGallery" class="nav-item text-white hover:text-gray-300" id="gallery-link">ArtGallery</a>
                         <a href="https://stvaer.github.io/IntelBlog/" class="nav-item text-white hover:text-gray-300" id="blog-link">Blog</a>
                     </div>
@@ -941,8 +941,8 @@
             <nav class="nav-menu md:hidden" id="nav-menu">
                 <a href="https://stvaer.github.io/IntelHome" class="nav-item" id="mobile-home-link">Home</a>
                 <a href="https://stvaer.github.io/IntelTrademark" class="nav-item" id="mobile-trademark-link">Trademark</a>
-                <a href="https://stvaer.github.io/IntelSol-and-terms" class="nav-item active-link" id="mobile-sol-terms-link">Sol&amp;Terms</a>
-                <a href="https://stvaer.github.io/IntelArts-Designs" class="nav-item" id="mobile-arts-designs-link">A'&amp;Designs</a>
+                <a href="https://stvaer.github.io/IntelSol-and-terms" class="nav-item" id="mobile-sol-terms-link">Sol&amp;Terms</a>
+                <a href="https://stvaer.github.io/arts-and-designs" class="nav-item" id="mobile-arts-designs-link">A'&amp;Designs</a>
                 <a href="https://stvaer.github.io/IntelArtGallery" class="nav-item" id="mobile-gallery-link">ArtGallery</a>
                 <a href="https://stvaer.github.io/IntelBlog/" class="nav-item" id="mobile-blog-link">Blog</a>
             </nav>
@@ -953,7 +953,7 @@
     <section id="inicio" class="section-1">
         <div class="content">
             <!-- Cuadro SVG del lado izquierdo -->
-            <a href="https://stvaer.github.io/IntelArts-Desigs" class="icon-container">
+            <a href="https://stvaer.github.io/arts-and-designs" class="icon-container">
                 <svg id="uuid-549960ab-dfe5-4079-8982-561a665cb2bd" class="icon-svg" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 198.32 264.48">
                   <defs>
                     <style>
@@ -1557,6 +1557,9 @@
                     } else {
                         link.classList.remove('active-link');
                     }
+
+            // Activar el enlace correspondiente al cargar la página
+            setActiveLink();   
                 });
                 
                 // Si estamos en la página principal, activar el enlace Home
@@ -1754,6 +1757,15 @@
                         if (navLink.getAttribute('href') === targetId) {
                             navLink.classList.add('active-link');
                         }
+                      +                   navLinks.forEach(navLink => {
+                        // 1) Limpiar cualquier active-link previo
+                        navLink.classList.remove('active-link');
+ 
+                        // 2) Comparar estrictamente el fragmento (hash) con targetId
+                        //    new URL(navLink.href).hash devuelve, p.ej., "#inicio"
+                        if ( new URL(navLink.href).hash === targetId ) {
+                            navLink.classList.add('active-link');
+                        }  
                     });
                 }
             } else {
