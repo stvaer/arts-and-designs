@@ -1561,7 +1561,7 @@
             // Activar el enlace correspondiente al cargar la página
             setActiveLink();   
                 });
-                
+            }         
                 // Si estamos en la página principal, activar el enlace Home
                 if (currentUrl.endsWith('/') || currentUrl.endsWith('/IntelArts-Designs')) {
                     document.getElementById('arts-designs-link').classList.add('active-link');
@@ -1751,6 +1751,9 @@
                         });
                     }, 100);
                     
+                    // 3) DECLARAR DE NUEVO navLinks en este scope
+                    const navLinks = document.querySelectorAll('.nav-item');
+               
                     // Actualizar enlaces activos
                     navLinks.forEach(navLink => {
                         navLink.classList.remove('active-link');
